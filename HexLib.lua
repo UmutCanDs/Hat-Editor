@@ -1427,13 +1427,6 @@ function library:CreateWindow(ctitle, csize, cpos)
 	return window
 end
 
-game:GetService("UserInputService").InputBegan:Connect(function(key, isFocused)
-	if key.KeyCode == getgenv().HexHubSettings.permsettings.global.GUIkeybind then
-		if not isFocused then
-			library.pointer.Parent.Enabled = not library.pointer.Parent.Enabled
-		end
-	end
-end)
 --[[
 UserInputService.InputChanged:connect(function(input)
 	if input.UserInputType == Enum.UserInputType.MouseMovement and library.pointer and library.pointer.Parent.Enabled == true then
