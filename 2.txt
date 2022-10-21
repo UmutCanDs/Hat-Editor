@@ -2157,7 +2157,7 @@ function DiscordLib:Window(text)
 				end)
 				
 				Button.MouseButton1Click:Connect(function()
-					 setclipboard(tostring(callback))
+					 syn.write_clipboard(tostring(callback))
 					 
 				end)
 				
