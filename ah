@@ -1,0 +1,5 @@
+local table = {}
+local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
+table.insert(table, hwid)
+
+return table
