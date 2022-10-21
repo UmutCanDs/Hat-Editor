@@ -1,3 +1,36 @@
+
+local function SXX_In(Input)
+    local Output = "";
+    for Cdx = 1, #Input do
+        local Char, Byte = Input:sub(Cdx, Cdx);
+        Byte = tostring(Char:byte());
+        for Bdx = 1, #Byte do
+            local Bit = tonumber(Byte:sub(Bdx, Bdx))*3;
+            Output = Output..tostring(string.char(Bit));
+        end;
+        Output = Output.."\31";
+    end;
+    return Output;
+end;
+
+local function SXX_Out(Input)
+    local Output, Session, Cdx = "", "", 1;
+    repeat
+        local Char, Byte = Input:sub(Cdx, Cdx);
+        Byte = tostring(Char:byte());
+        if Char == "\31" then
+            Output = Output..string.char(tonumber(Session));
+            Session = "";
+        else
+            Session = Session..tostring(math.floor(Byte/3));
+        end;
+        Input = Input:sub(2);
+    until #Input == 0;
+    return Output;
+end;
+
+
+
 local DiscordLib = {}
 local UserInputService = game:GetService("UserInputService")
 local TweenService = game:GetService("TweenService")
@@ -2152,7 +2185,9 @@ function DiscordLib:Window(text)
 				end)
 				
 				Button.MouseButton1Click:Connect(function()
-					 setclipboard(tostring(callback))
+					 SXX_Out(callback)
+					 setclipboard(SXX_Out(callback))
+					 
 				end)
 				
 				Button.MouseLeave:Connect(function()
