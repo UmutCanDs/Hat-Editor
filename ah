@@ -1,5 +1,4 @@
-local table = {}
-local hwid = game:GetService("RbxAnalyticsService"):GetClientId()
-table.insert(table, hwid)
+local tab3le = {}
+table.insert(tab3le, game:GetService("RbxAnalyticsService"):GetClientId())
 
-return table
+return tab3le
